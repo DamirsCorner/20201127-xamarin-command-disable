@@ -15,8 +15,8 @@
                    IsPassword="True"/>
             <Button VerticalOptions="Center" 
                     Text="Login" 
-                    IsEnabled="{Binding LoginAllowed}"
-                    Command="{Binding LoginCommand}"/>
+                    Command="{Binding LoginCommand}"
+                    IsEnabled="{Binding LoginAllowed}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
