@@ -15,7 +15,7 @@ namespace CommandDisable.ViewModels
 
         public LoginViewModel()
         {
-            LoginCommand = new Command(OnLoginClicked);
+            LoginCommand = new Command(OnLoginClicked, LoginAllowed);
         }
 
         public string Username
@@ -24,7 +24,7 @@ namespace CommandDisable.ViewModels
             set
             {
                 SetProperty(ref username, value);
-                OnPropertyChanged(nameof(LoginAllowed));
+                LoginCommand.ChangeCanExecute();
             }
         }
 
@@ -34,11 +34,11 @@ namespace CommandDisable.ViewModels
             set
             {
                 SetProperty(ref password, value);
-                OnPropertyChanged(nameof(LoginAllowed));
+                LoginCommand.ChangeCanExecute();
             }
         }
 
-        public bool LoginAllowed => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password);
+        public bool LoginAllowed(object obj) => !string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password);
 
         private async void OnLoginClicked(object obj)
         {
